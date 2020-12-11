@@ -9,25 +9,13 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
 
-    protected $service;
 
-    public function __construct(\PostService  $service)
-    {
-        $this->service = $service;
-    }
-
-    public function index(Request  $request)
+    public function index()
     {
         $posts = Post::with('tags', 'categories','image', 'author')->get();
 
-        $limit=$request->input('limit',50);
-//        return json_encode($this->services->all($limit));
-
-
+        return view('post.list')->withPosts($posts);
     }
 
-    public function show(Request $request,$id)
-    {
 
-    }
 }
