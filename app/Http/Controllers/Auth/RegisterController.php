@@ -25,7 +25,7 @@ class RegisterController extends Controller
         $user=User::create($request->all());
 
         Auth::login($user);
-        return view('');
+        return view('user.dashboard')->withUser($user);
 
      }
 }

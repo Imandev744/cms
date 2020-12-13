@@ -12,6 +12,7 @@ class PhoneController extends Controller
     public function setVerificationCode()
     {
         $mobile = session('mobile');
+
         $code = rand(1000, 9999);
         Log::info("$mobile:$code");
         Cache::put($mobile, $code, 60);

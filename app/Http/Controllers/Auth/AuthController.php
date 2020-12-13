@@ -19,7 +19,7 @@ class AuthController extends Controller
         session(['mobile'=>$request->mobile]);
 
         if(User::select('mobile')->where('mobile',$request->mobile)->exists()){
-            return view('');
+            return view('auth.password');
         }
         else{
             return redirect()->route('auth.verify.code');

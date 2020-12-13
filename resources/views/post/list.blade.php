@@ -1,8 +1,5 @@
 @extends('layouts.interface')
 
-@push('css')
-
-@endpush
 
 @section('container')
 
