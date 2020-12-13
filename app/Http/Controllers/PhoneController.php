@@ -9,22 +9,30 @@ use Illuminate\Support\Facades\Cache;
 
 class PhoneController extends Controller
 {
-    public function setVerificationCode($mobile)
+    public function setVerificationCode()
     {
+        $mobile = session('mobile');
+
         $code = rand(1000, 9999);
         Log::info("$mobile:$code");
-        Cache::put($mobile,$code,60);
-        return response('verify your code !');
+        Cache::put($mobile, $code, 60);
+        return view('auth.verify');
     }
 
-    public function verifyMobile($mobile,$code)
+    public function verifyMobile(Request $request)
     {
-        $cachedCode=Cache::get($mobile);
-        if(empty($code) || $cachedCode==null ||$cachedCode!=$code){
-            return response("Try again !");
+
+        $mobile = session('mobile');
+        $code = $request->code;
+
+        $cachedCode = Cache::get($mobile);
+        if (empty($code) || $cachedCode == null || $cachedCode != $code) {
+            return redirect()
+                ->route('auth.verify.code')
+                ->withError('Wrong Code Please Try again with new code!');
         }
 
         Cache::forget($mobile);
-        return response('ok ');
+        return redirect()->route('auth.register.user');
     }
 }
