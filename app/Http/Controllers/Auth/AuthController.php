@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function auth()
+    public function showPhoneForm()
     {
-        return view('auth.auth');
+        return view('auth.phoneform');
     }
 
     public function checkNumber(PhoneNumberRequest $request)
@@ -19,10 +19,10 @@ class AuthController extends Controller
         session(['mobile'=>$request->mobile]);
 
         if(User::select('mobile')->where('mobile',$request->mobile)->exists()){
-            return view('auth.password');
+            return view('auth.passwordform');
         }
         else{
-            return redirect()->route('auth.verify.code');
+            return redirect()->route('verify.code');
         }
 
     }
