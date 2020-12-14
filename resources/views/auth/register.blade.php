@@ -5,7 +5,7 @@
 
     <div class="container mt-5" >
         <h2>Register User</h2>
-        <form action="{{route('auth.register.user.store')}}" method="post">
+        <form action="{{route('register.user.store')}}" method="post">
             @csrf
             <div class="form-group">
                 <label>Enter Name User :</label>

@@ -10,7 +10,7 @@
 
     <div class="container mt-5" >
         <h2>Form authentication</h2>
-        <form action="{{route('auth.check.num')}}" method="post">
+        <form action="{{route('check.num')}}" method="post">
             @csrf
 
 

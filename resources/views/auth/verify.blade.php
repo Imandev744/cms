@@ -5,7 +5,7 @@
 @section('container')
     <div class="container mt-5" >
         <h2>Verification mobile</h2>
-        <form action="{{route('auth.verify.mobile')}}" method="post">
+        <form action="{{route('verify.mobile')}}" method="post">
             @csrf
                 <div class="form-group">
                 <label for="code">verification code:</label>
