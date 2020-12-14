@@ -28,11 +28,11 @@ class PhoneController extends Controller
         $cachedCode = Cache::get($mobile);
         if (empty($code) || $cachedCode == null || $cachedCode != $code) {
             return redirect()
-                ->route('auth.verify.code')
+                ->route('verify.code')
                 ->withError('Wrong Code Please Try again with new code!');
         }
 
         Cache::forget($mobile);
-        return redirect()->route('auth.register.user');
+        return redirect()->route('register.user');
     }
 }
