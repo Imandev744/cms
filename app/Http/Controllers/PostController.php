@@ -10,7 +10,7 @@ class PostController extends Controller
 {
 
 
-    public function index()
+    public function showPosts()
     {
         $posts = Post::with('tags', 'categories','image', 'author')->get();
 

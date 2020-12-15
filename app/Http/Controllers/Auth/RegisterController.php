@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function showRegisterForm()
     {
         return view('auth.register');
      }
@@ -20,7 +20,7 @@ class RegisterController extends Controller
     {
         $mobile=session('mobile');
         $request['mobile']=$mobile;
-        $request['password']=Hash::make($request['password']);
+
 
         $user=User::create($request->all());
 
