@@ -16,7 +16,6 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile'=>'required|startwith:09',
             'password'=>'required'
         ];
     }
