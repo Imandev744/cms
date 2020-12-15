@@ -20,7 +20,7 @@ class RegisterController extends Controller
     {
         $mobile=session('mobile');
         $request['mobile']=$mobile;
-        $request['password']=Hash::make($request['password']);
+
 
         $user=User::create($request->all());
 
