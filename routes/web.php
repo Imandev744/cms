@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LoginController;
+//use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\PhoneController;
 
@@ -23,8 +24,17 @@ Route::group([
     Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register.user');
     Route::post('register', [RegisterController::class, 'store'])->name('register.user.store');
 
-    Route::get('login', [LoginController::class, 'showLoginPassword']);
-    Route::post('register', [LoginController::class, 'checkInfo'])->name('login.user.check');
+
+    Route::get('login', [LoginController::class, 'showLoginPassword'])->name('show.passform');
+    Route::post('login/check', [LoginController::class, 'checkInfo'])->name('login.pass.check');
+
+
+});
+
+
+Route::group([],
+    function(){
+    Route::resource('user','User\UserController');
 });
 
 
