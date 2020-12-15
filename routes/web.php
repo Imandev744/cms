@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\LoginController;
 //use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PhoneController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\PhoneController;
+
 
 
 Route::get('/', 'PostController@showPosts');
