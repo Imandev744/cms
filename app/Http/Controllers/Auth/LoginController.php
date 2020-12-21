@@ -19,16 +19,27 @@ class LoginController extends Controller
 
     public function checkInfo(LoginRequest $request)
     {
-
-
         $mobile = session('mobile');
         $pass = $request->password;
 
-
         if (Auth::attempt(['mobile' => $mobile, 'password' => $pass])) {
+
             return redirect()->route('role.check');
         } else
             return redirect()->back()->with('error', 'نام کاربری یا کلمه عبور صحیح نیست ! ');
+    }
+
+    public function logout()
+    {
+        if(auth()->check()){
+            auth()->logout();
+            return redirect()->route('show.phoneform');
+        }
+    }
+
+    public function attempt($mobil,$pass): bool
+    {
+        return Auth::attempt(['email'=>$mobil,'password'=>$pass]);
     }
 
 
