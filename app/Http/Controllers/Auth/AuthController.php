@@ -19,6 +19,7 @@ class AuthController extends Controller
         session(['mobile'=>$request->mobile]);
 
         if(User::select('mobile')->where('mobile',$request->mobile)->exists()){
+
             return redirect()->route('show.passform');
         }
         else{

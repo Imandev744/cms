@@ -8,6 +8,7 @@ use App\Http\Requests\PhoneNumberRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,17 +20,16 @@ class LoginController extends Controller
     public function checkInfo(LoginRequest $request)
     {
 
+
         $mobile = session('mobile');
         $pass = $request->password;
 
-        if (Auth::attempt(['mobile' => $mobile, 'password' => $pass]))
 
-            return redirect()->route('user.index');
-        else
-
-            return redirect()->back()->with('error','نام کاربری یا کلمه عبور صحیح نیست ! ');
-
-   }
+        if (Auth::attempt(['mobile' => $mobile, 'password' => $pass])) {
+            return redirect()->route('role.check');
+        } else
+            return redirect()->back()->with('error', 'نام کاربری یا کلمه عبور صحیح نیست ! ');
+    }
 
 
 }
