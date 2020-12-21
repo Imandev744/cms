@@ -17,6 +17,7 @@ class User extends Authenticatable
         'email',
         'mobile',
         'password',
+        'role'
     ];
 
     public function setPasswordAttribute($value)
@@ -24,6 +25,11 @@ class User extends Authenticatable
         $this->attributes['password']=Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
 
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
     protected $hidden = [
         'password',

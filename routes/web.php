@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\RegisterController;
 //use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PhoneController;
+use App\Http\Controllers\Auth\RoleController;
+use App\Http\Controllers\User\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,7 +31,9 @@ Route::group([
     Route::get('login', [LoginController::class, 'showLoginPassword'])->name('show.passform');
     Route::post('login/check', [LoginController::class, 'checkInfo'])->name('login.pass.check');
 
+    Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
+    Route::get('rolecheck',[RoleController::class,'rolecheck'])->name('role.check');
 });
 
 
@@ -38,6 +42,11 @@ Route::group([],
     Route::resource('user','User\UserController');
 });
 
+
+
+    Route::get('admin',[AdminController::class,'index'])->name('admin.index');
+
+    Route::get('admin/showuserinfo/{user}',[AdminController::class,'show'])->name('admin.user.show');
 
 
 
