@@ -30,6 +30,16 @@
 </head>
 <body>
 
+<div class="m-5">
+
+    @if(auth()->check())
+        <p>خوش آمدید {{auth()->user()->name}} </p>
+        <a href="{{route('logout')}}" class="btn btn-danger">خروج</a>
+    @endif
+
+    @yield('content')
+</div>
+
 
     @yield('container')
 
