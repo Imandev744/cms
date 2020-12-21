@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,43 +12,20 @@ class AdminController extends Controller
 
     public function index()
     {
+        $user=\auth()->user();
 
-        return view('user.adminpanel');
+        $all=User::all();
+
+        return view('admin.adminpanel')->withUser($user)->withAll($all);
     }
 
-
-    public function create()
+    public function show(User $user)
     {
-        //
-    }
 
+        $count=$user->posts()->count();
 
-    public function store(Request $request)
-    {
-        //
-    }
+        $user['count']=$count;
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
+        return view('admin.showuser')->withUser($user);
     }
 }
